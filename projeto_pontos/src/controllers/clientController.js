@@ -18,10 +18,10 @@ const getById = async (req,res) => {
     }
 
 }
-
 const createClientController = (req,res,next) => {
-    let clientCreated = createClient(req.body)
+    let client = req.body
+    let clientCreated = createClient(client)
     res.status(201).send(clientCreated)
 }
 
-module.exports = { getAll, getById, createClient }
+module.exports = { getAll, getById, createClientController }

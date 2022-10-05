@@ -1,6 +1,7 @@
 const express = require('express')
 const router = require('./src/routes/clientRoutes')
 const morgan = require('morgan')
+const bodyParser = require('body-parser')
 const errorHandler = require('./src/middlewares/errorHandle')
 
 class App{ 
@@ -13,6 +14,8 @@ class App{
 
     middlewares(){
         this.server.use(express.json())
+        this.server.use(bodyParser.urlencoded({ extended: false }))
+        this.server.use(bodyParser.json())
         this.server.use(errorHandler)  
     }
 
