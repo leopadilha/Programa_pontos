@@ -19,12 +19,12 @@ const getAllClients = async () => {
 }
 
 const createClient = async (req,res,next) => {
-    let clientRequest = req.body
-
-    if (!clientRequest.document){
-        next(new ErrorResponse("Por favor preencher todos os campos"), 400)
+    try{
+        console.log(req.body.name)
+    }catch(err){
+        return err
     }
-    let clientCreated = await client.create(clientRequest)
-    return clientCreated
+   // let clientCreated = await client.create(clientRequest)
+    //return clientCreated
 }
  module.exports = { getClientById, getAllClients, createClient }
