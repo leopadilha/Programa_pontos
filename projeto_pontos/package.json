@@ -1,0 +1,20 @@
+{
+  "name": "projeto_senac",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "node server"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.1",
+    "express-validator": "^6.14.2",
+    "mongoose": "^6.6.3",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.20"
+  }
+}
