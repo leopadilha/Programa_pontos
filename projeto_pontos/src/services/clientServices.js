@@ -14,7 +14,7 @@ const getAllClients = async () => {
 
 const createClient = async ( request ) => {
   let clientRequest = request
-  console.log(clientRequest)
+ 
 //   if (clientRequest.name == 'leo'){
 //     throw new ErrorResponse("Not found", 400)
 //   }
