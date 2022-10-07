@@ -37,6 +37,24 @@ const deleteClientByDocument = async ( clientDocument ) => {
         throw new ErrorResponse("Esse usuário não consta no nosso sistema", 404)
     }
 
-    return await client.deleteOne({id: existClient.id})
+    return await client.findByIdAndDelete(existClient.id)
 }
- module.exports = { getClientById, getAllClients, createClient, deleteClientByDocument }
+
+const updateClient = async (clientId, data) => {
+
+    let existClient = await client.findById(clientId)
+
+    if (!existClient){
+        throw new ErrorResponse("Esse usuário não consta no nosso sistema", 404)
+    }
+
+    await client.updateOne({_id: clientId}, data)
+    return data
+}
+ module.exports = { 
+    getClientById, 
+    getAllClients, 
+    createClient, 
+    deleteClientByDocument,
+    updateClient
+ }

@@ -1,8 +1,10 @@
+const client = require('../models/client')
 const { 
     getClientById,
     getAllClients,
     createClient,
-    deleteClientByDocument, 
+    deleteClientByDocument,
+    updateClient, 
 } = require('../services/clientServices')
 
 const getAll = async (req,res) =>{
@@ -41,4 +43,22 @@ const deleteClientByDocumentController = async (req,res,next) => {
     }
 }
 
-module.exports = { getAll, getById, createClientController, deleteClientByDocumentController }
+const updateClientController = async (req,res,next) => {
+    try{
+        let clientUpdated = await updateClient(req.params.id, req.body)
+        return res.status(200).json({
+            msg: `Cliente alterado com sucesso ${clientUpdated.name}`
+        })
+    }catch(err){
+        console.log(err)
+        next(err)
+    }
+}
+
+module.exports = { 
+    getAll, 
+    getById, 
+    createClientController, 
+    deleteClientByDocumentController, 
+    updateClientController
+}
