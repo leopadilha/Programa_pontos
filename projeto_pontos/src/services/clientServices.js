@@ -51,10 +51,25 @@ const updateClient = async (clientId, data) => {
     await client.updateOne({_id: clientId}, data)
     return data
 }
+
+const updateSpots = async (clientId, spots) => {
+
+    let existClient = await client.findById(clientId)
+
+    if (!existClient) throw new ErrorResponse("Esse usuário não consta no nosso sistema", 404)
+    
+    spots < 0 ? existClient.spots -= -spots : existClient.spots += spots
+
+    if (existClient.spots < 0) throw new ErrorResponse("O saldo de pontos do cliente não pode ser menor que 0",400)
+
+    await client.updateOne({_id: clientId}, existClient)
+    return existClient
+}
  module.exports = { 
     getClientById, 
     getAllClients, 
     createClient, 
     deleteClientByDocument,
-    updateClient
+    updateClient,
+    updateSpots,
  }
