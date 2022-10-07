@@ -16,7 +16,21 @@ const validate = (req,res,next) => {
     if (document.includes('.')){
         return res.status(400).json({msg: "Por favor não informar pontos no campo cpf"})
     }
+
     next()
 }
 
-module.exports = { validate }
+const validateSpots = (req,res, next) => {
+    let { spots } = req.body
+
+    let spotsIsvalid = spots == '' || spots == undefined || spots == null
+    if (spotsIsvalid){
+        return res.status(400).json({msg: "Por favor verifique os campos informados"})
+    }
+    if (isNaN(spots)){
+        return res.status(400).json({msg: "Por favor informar somente caracteres númericos"})
+    }
+    next()
+}
+
+module.exports = { validate, validateSpots }

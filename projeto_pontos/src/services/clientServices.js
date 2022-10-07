@@ -1,4 +1,5 @@
 const client = require('../models/client')
+const trim = require('../utils/trim')
 const ErrorResponse = require('../utils/errorResponse')
 
 const getClientById = async ( clientId ) => {
@@ -14,7 +15,8 @@ const getAllClients = async () => {
 }
 
 const createClient = async ( data ) => {
-
+    data = trim(data)
+    console.log(data)
     let existClient = await client.findOne({document : data.document})
 
     let getClients = await client.find()
