@@ -13,13 +13,7 @@ const getAllClients = async () => {
 }
 
 const createClient = async ( request ) => {
-  let clientRequest = request
- 
-//   if (clientRequest.name == 'leo'){
-//     throw new ErrorResponse("Not found", 400)
-//   }
-  let clientCreated = await client.create(clientRequest)
-
+  let clientCreated = await client.create(request)
   return clientCreated    
 }
  module.exports = { getClientById, getAllClients, createClient }
