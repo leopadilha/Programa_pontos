@@ -5,6 +5,10 @@ const client = new mongoose.Schema({
         type: String,
         required: true,
     },
+    identifierSpots:{
+        type: Number,
+        unique: true
+    },
     document:{
         type: String,
         unique: true,

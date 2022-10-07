@@ -1,7 +1,8 @@
 const { 
     getClientById,
     getAllClients,
-    createClient, 
+    createClient,
+    deleteClientByDocument, 
 } = require('../services/clientServices')
 
 const getAll = async (req,res) =>{
@@ -21,13 +22,23 @@ const getById = async (req,res,next) => {
 const createClientController = async (req,res,next) => {
     try{
         let clientRequest = await createClient(req.body)
-        return res.status(200).send(clientRequest)
+        return res.status(200).json({
+            msg: `Cliente ${clientRequest.name} cadastrado com sucesso`
+        })
     }catch(err){
-        console.log(err)
         next(err)
     }
-
-
 }
 
-module.exports = { getAll, getById, createClientController }
+const deleteClientByDocumentController = async (req,res,next) => {
+    try{
+        await deleteClientByDocument(req.params.document)
+        return res.status(200).json({
+            msg: `Cliente deletado com sucesso`
+        })
+    }catch(err){
+        next(err)
+    }
+}
+
+module.exports = { getAll, getById, createClientController, deleteClientByDocumentController }
