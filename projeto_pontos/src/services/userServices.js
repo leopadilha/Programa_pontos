@@ -1,6 +1,7 @@
 const user = require('../models/user')
 //const trim = require('../utils/trim')
 const ErrorResponse = require('../utils/errorResponse')
+const bcrypt = require('bcrypt')
 
 const getUserByIdService = async ( userId ) => {
     let userResponse = await user.findById(userId)
@@ -48,10 +49,24 @@ const updateUserService = async (userId, data) => {
     return data
 }
 
+const loginService = async ( document, password ) => {
+
+    let existsUser = await user.findOne({ document: document  })
+
+    if(!existsUser) throw new ErrorResponse("Usuário ou senha inválidos", 400)
+
+    let passwordInformed = await bcrypt.compare(password, existsUser.password)
+
+    if (!passwordInformed) throw new ErrorResponse("Usuário ou senha inválidos", 400)
+
+    return existsUser
+}
+
 module.exports = { 
     createUserService,
     getUserByIdService,
     getAllUserService,
     updateUserService,
     deleteUserByDocumentService,
+    loginService
  }

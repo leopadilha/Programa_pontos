@@ -5,7 +5,10 @@ const {
     getAllUserService,
     deleteUserByDocumentService,
     updateUserService,
+    loginService
  } = require('../services/userServices')
+
+ const generateToken = require('../utils/generateToken')
 
 const getAllController = async (req,res) =>{
     let users = await getAllUserService()
@@ -56,10 +59,26 @@ const updateUserController = async (req,res,next) => {
     }
 }
 
+const loginController = async (req,res,next) => {
+    try{
+        let { document, password} = req.body
+
+        let loggedUser = await loginService(document,password)
+        if (loggedUser){
+            let token = generateToken(loggedUser.id,loggedUser.name)
+            console.log(token)
+            return res.status(200).json({token: token})
+        }
+    }catch(err){
+        next(err)
+        console.log(err)
+    }
+}
 module.exports = { 
     createUserController,
     getAllController,
     getByIdController,
     updateUserController,
     deleteUserByDocumentController,
+    loginController
  }

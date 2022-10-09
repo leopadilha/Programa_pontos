@@ -73,6 +73,7 @@ const updateSpotsService = async (clientId, spots) => {
     await client.updateOne({_id: clientId}, existClient)
     return existClient
 }
+
  module.exports = { 
     getClientByIdService, 
     getAllClientService, 

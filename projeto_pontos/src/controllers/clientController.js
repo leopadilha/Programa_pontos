@@ -68,6 +68,8 @@ const updateSpotsController = async (req,res,next) => {
     }
 }
 
+
+
 module.exports = { 
     getAllClientController, 
     getByIdClientController, 
