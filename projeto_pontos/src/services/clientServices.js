@@ -15,8 +15,7 @@ const getAllClients = async () => {
 }
 
 const createClient = async ( data ) => {
-    data = trim(data)
-    console.log(data)
+
     let existClient = await client.findOne({document : data.document})
 
     let getClients = await client.find()
@@ -26,6 +25,7 @@ const createClient = async ( data ) => {
     if (existClient){
         throw new ErrorResponse("Cliente já cadastrado no sistema", 409)
     }
+    
     data.identifierSpots = lastSpotsCreated.identifierSpots + 1
 
     let clientCreated = await client.create(data)
@@ -48,6 +48,12 @@ const updateClient = async (clientId, data) => {
 
     if (!existClient){
         throw new ErrorResponse("Esse usuário não consta no nosso sistema", 404)
+    }
+
+    let existDocument = await client.findOne({document : data.document})
+
+    if(existDocument){
+        throw new ErrorResponse("Não foi possível alterar o usuário, pois esse cpf já está cadastrado no sistema", 400)
     }
 
     await client.updateOne({_id: clientId}, data)
