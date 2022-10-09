@@ -1,5 +1,6 @@
 const express = require('express')
-const router = require('./src/routes/clientRoutes')
+const routerClient = require('./src/routes/clientRoutes')
+const routerUser = require('./src/routes/userRoutes')
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
 require('express-async-errors')
@@ -22,7 +23,8 @@ class App{
     }
 
     routes(){
-        this.server.use('/api/v1', router)
+        this.server.use('/api/v1', routerClient)
+        this.server.use('/api/v1', routerUser)
     }
 
     morgan(){
