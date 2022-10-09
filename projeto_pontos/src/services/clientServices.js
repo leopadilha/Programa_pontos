@@ -2,7 +2,7 @@ const client = require('../models/client')
 const trim = require('../utils/trim')
 const ErrorResponse = require('../utils/errorResponse')
 
-const getClientById = async ( clientId ) => {
+const getClientByIdService = async ( clientId ) => {
     let clientResponse = await client.findById(clientId)
     if (!clientResponse){
         throw new ErrorResponse("Esse usuário não consta no nosso sistema", 404)
@@ -10,11 +10,11 @@ const getClientById = async ( clientId ) => {
     return clientResponse
 }
 
-const getAllClients = async () => {
+const getAllClientService = async () => {
     return await client.find({})
 }
 
-const createClient = async ( data ) => {
+const createClientService = async ( data ) => {
 
     let existClient = await client.findOne({document : data.document})
 
@@ -32,7 +32,7 @@ const createClient = async ( data ) => {
     return clientCreated    
 }
 
-const deleteClientByDocument = async ( clientDocument ) => {
+const deleteClientByDocumentService = async ( clientDocument ) => {
 
     let existClient = await client.findOne({document : clientDocument})
     if (!existClient){
@@ -42,7 +42,7 @@ const deleteClientByDocument = async ( clientDocument ) => {
     return await client.findByIdAndDelete(existClient.id)
 }
 
-const updateClient = async (clientId, data) => {
+const updateClientService = async (clientId, data) => {
 
     let existClient = await client.findById(clientId)
 
@@ -60,7 +60,7 @@ const updateClient = async (clientId, data) => {
     return data
 }
 
-const updateSpots = async (clientId, spots) => {
+const updateSpotsService = async (clientId, spots) => {
 
     let existClient = await client.findById(clientId)
 
@@ -74,10 +74,10 @@ const updateSpots = async (clientId, spots) => {
     return existClient
 }
  module.exports = { 
-    getClientById, 
-    getAllClients, 
-    createClient, 
-    deleteClientByDocument,
-    updateClient,
-    updateSpots,
+    getClientByIdService, 
+    getAllClientService, 
+    createClientService, 
+    deleteClientByDocumentService,
+    updateClientService,
+    updateSpotsService,
  }
