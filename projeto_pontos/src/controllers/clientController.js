@@ -51,7 +51,6 @@ const updateClientController = async (req,res,next) => {
             msg: `Cliente alterado com sucesso ${clientUpdated.name}`
         })
     }catch(err){
-        console.log(err)
         next(err)
     }
 }
@@ -63,7 +62,6 @@ const updateSpotsController = async (req,res,next) => {
             msg: `Cliente alterado com sucesso ${clientUpdated.name}`
         })
     }catch(err){
-        console.log(err)
         next(err)
     }
 }

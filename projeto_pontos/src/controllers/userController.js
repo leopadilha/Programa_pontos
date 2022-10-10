@@ -31,7 +31,6 @@ const createUserController = async (req,res,next) => {
             msg: `Usuário ${userRequest.name} cadastrado com sucesso`
         })
     }catch(err){
-        console.log(err)
         next(err)
     }
 }
@@ -54,7 +53,6 @@ const updateUserController = async (req,res,next) => {
             msg: `Usuário ${userUpdated.name} alterado com sucesso `
         })
     }catch(err){
-        console.log(err)
         next(err)
     }
 }
@@ -65,13 +63,11 @@ const loginController = async (req,res,next) => {
 
         let loggedUser = await loginService(document,password)
         if (loggedUser){
-            let token = generateToken(loggedUser.id,loggedUser.name)
-            console.log(token)
+            let token = generateToken(loggedUser.id,loggedUser.name, loggedUser.roles)
             return res.status(200).json({token: token})
         }
     }catch(err){
         next(err)
-        console.log(err)
     }
 }
 module.exports = { 
