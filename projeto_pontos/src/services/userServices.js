@@ -12,7 +12,7 @@ const getUserByIdService = async ( userId ) => {
 }
 
 const getAllUserService = async () => {
-    return await user.find({})
+    return await user.find({}, {password: 0, roles: 0,})
 }
 
 const createUserService = async ( data ) => {

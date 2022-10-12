@@ -1,4 +1,6 @@
 const client = require('../models/client')
+const audit = require('../models/audit')
+
 const { 
     getClientByIdService,
     getAllClientService,
