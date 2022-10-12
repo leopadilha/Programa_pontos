@@ -8,7 +8,7 @@ module.exports = generateToken = (id,name,role) => {
     }, 
     'HJGTLSKSHTU5567G8DHGHYS8647HFFH',
     {
-        expiresIn: 1000
+        expiresIn: 5000
     })
 
 }
