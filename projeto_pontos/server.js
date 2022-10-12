@@ -7,7 +7,6 @@ const PORT  = process.env.PORT || 3000
 
 connection()
 
-
 app.listen(PORT, ()=>{
     console.log(`servidor rodando na porta ${PORT}`)
 })

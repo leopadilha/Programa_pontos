@@ -1,12 +1,14 @@
 const router = require('express').Router()
 const clientController = require('../controllers/clientController')
-const clientValidator = require('../middlewares/validators/client')
+const {validateNameAndDocument, validateSpots} = require('../middlewares/validators/client')
+const { auth } = require('../middlewares/auth')
+const { role }  = require('../middlewares/verifyRole')
 
-router.get('/client', clientController.getAllClientController)
-router.post('/client', clientValidator.validate, clientController.createClientController)
-router.get('/client/:id', clientController.getByIdClientController)
-router.delete('/client/:document', clientController.deleteClientByDocumentController)
-router.patch('/client/:id', clientValidator.validate, clientController.updateClientController)
-router.put('/client/spots/:id', clientValidator.validateSpots, clientController.updateSpotsController)
+router.get('/client', auth, role, clientController.getAllClientController)
+router.post('/client', auth, validateNameAndDocument, clientController.createClientController)
+router.get('/client/:id', auth, clientController.getByIdClientController)
+router.delete('/client/:document', auth, clientController.deleteClientByDocumentController)
+router.patch('/client/:id', auth, validateNameAndDocument, clientController.updateClientController)
+router.put('/client/spots/:id', auth, validateSpots, clientController.updateSpotsController)
 
 module.exports = router

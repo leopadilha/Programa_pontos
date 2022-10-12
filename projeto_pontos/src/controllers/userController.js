@@ -1,4 +1,3 @@
-const user = require('../models/user')
 const { 
     createUserService, 
     getUserByIdService,
@@ -60,8 +59,8 @@ const updateUserController = async (req,res,next) => {
 const loginController = async (req,res,next) => {
     try{
         let { document, password} = req.body
+         let loggedUser = await loginService(document,password)
 
-        let loggedUser = await loginService(document,password)
         if (loggedUser){
             let token = generateToken(loggedUser.id,loggedUser.name, loggedUser.roles)
             return res.status(200).json({token: token})

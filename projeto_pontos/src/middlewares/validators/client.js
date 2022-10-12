@@ -1,4 +1,5 @@
-const validate = (req,res,next) => {
+const validateNameAndDocument = (req,res,next) => {
+    
     let { name, document } = req.body
 
     let nameIsValid = name == '' || name == undefined || name == null
@@ -24,6 +25,7 @@ const validateSpots = (req,res, next) => {
     let { spots } = req.body
 
     let spotsIsvalid = spots == '' || spots == undefined || spots == null
+    
     if (spotsIsvalid){
         return res.status(400).json({msg: "Por favor verifique os campos informados"})
     }
@@ -33,4 +35,4 @@ const validateSpots = (req,res, next) => {
     next()
 }
 
-module.exports = { validate, validateSpots }
+module.exports = { validateNameAndDocument, validateSpots }

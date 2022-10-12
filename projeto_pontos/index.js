@@ -2,7 +2,7 @@ const express = require('express')
 const routerClient = require('./src/routes/clientRoutes')
 const routerUser = require('./src/routes/userRoutes')
 const morgan = require('morgan')
-const bodyParser = require('body-parser')
+//const bodyParser = require('body-parser')
 require('express-async-errors')
 const errorHandler = require('./src/middlewares/errorHandle')
 
@@ -12,8 +12,7 @@ class App{
         this.middlewares()
         this.morgan()
         this.routes()
-        this.errorHandler()
-        
+        this.errorHandler()     
     }
 
     middlewares(){
