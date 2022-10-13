@@ -26,7 +26,7 @@ const getByIdController = async (req,res,next) => {
 const createUserController = async (req,res,next) => {
     try{
         let userRequest = await createUserService(req.body)
-        return res.status(200).json({
+        return res.status(201).json({
             msg: `Usuário ${userRequest.name} cadastrado com sucesso`
         })
     }catch(err){

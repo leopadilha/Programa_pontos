@@ -27,7 +27,7 @@ const getByIdClientController = async (req,res,next) => {
 const createClientController = async (req,res,next) => {
     try{
         let clientRequest = await createClientService(req.body)
-        return res.status(200).json({
+        return res.status(201).json({
             msg: `Cliente ${clientRequest.name} cadastrado com sucesso`
         })
     }catch(err){
