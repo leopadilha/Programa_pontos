@@ -6,7 +6,8 @@ const {
     createClientService,
     deleteClientByDocumentService,
     updateClientService,
-    updateSpotsService
+    updateSpotsService,
+    deleteClientByIdService
 } = require('../services/clientServices')
 
 const getAllClientController = async (req,res) =>{
@@ -45,6 +46,18 @@ const deleteClientByDocumentController = async (req,res,next) => {
     }
 }
 
+const deleteClientByIdController = async (req,res,next) => {
+    try{
+        console.log(req.params.id)
+        await deleteClientByIdService(req.params.id)
+        return res.status(200).json({
+            msg: `Cliente deletado com sucesso`
+        })
+    }catch(err){
+        next(err)
+    }
+}
+
 const updateClientController = async (req,res,next) => {
     try{
         let clientUpdated = await updateClientService(req.params.id, req.body)
@@ -75,5 +88,6 @@ module.exports = {
     createClientController, 
     deleteClientByDocumentController, 
     updateClientController,
-    updateSpotsController
+    updateSpotsController,
+    deleteClientByIdController
 }

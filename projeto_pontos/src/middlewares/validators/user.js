@@ -21,11 +21,9 @@ const userValidateNameAndDocument = (req,res,next) => {
     if (passwordIsvalid){
         return res.status(400).json({msg: "Por favor verificar o campo senha"})
     }
-    if (password.length != 6){
-        return res.status(400).json({msg: "Por favor informar 6 digitos no campo senha"})
-    }
-    if (password.includes('.')){
-        return res.status(400).json({msg: "Por favor informar somente números no campo senha"})
+    if (password.length < 6){
+        console.log(password.length)
+        return res.status(400).json({msg: "Por favor informar uma senha com no mínimo 6 caracteres"})
     }
     if (roles && roles != 'Admin' && roles != 'Employee'){
         return res.status(400).json({msg: "Por favor informar 'Admin' ou 'Employee' "})

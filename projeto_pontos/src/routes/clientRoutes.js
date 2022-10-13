@@ -8,6 +8,7 @@ router.get('/client', auth, role, clientController.getAllClientController)
 router.post('/client', auth, validateNameAndDocument, clientController.createClientController)
 router.get('/client/:id', auth, clientController.getByIdClientController)
 router.delete('/client/:document', auth, clientController.deleteClientByDocumentController)
+router.delete('/client/id/:id', auth, clientController.deleteClientByIdController)
 router.patch('/client/:id', auth, validateNameAndDocument, clientController.updateClientController)
 router.put('/client/spots/:id', auth, validateSpots, clientController.updateSpotsController)
 

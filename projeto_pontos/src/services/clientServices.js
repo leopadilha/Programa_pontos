@@ -40,6 +40,18 @@ const deleteClientByDocumentService = async ( clientDocument ) => {
     return await client.findByIdAndDelete(existClient.id)
 }
 
+const deleteClientByIdService = async ( clientId ) => {
+
+    let existClient = await client.findOne({ id : clientId})
+
+    if (!existClient){
+        throw new ErrorResponse("Esse usuário não consta no nosso sistema", 404)
+    }
+
+    return await client.findByIdAndDelete(clientId)
+}
+
+
 const updateClientService = async (clientId, data) => {
 
     let existClient = await client.findById(clientId)
@@ -79,4 +91,5 @@ const updateSpotsService = async (clientId, spots) => {
     deleteClientByDocumentService,
     updateClientService,
     updateSpotsService,
+    deleteClientByIdService
  }
