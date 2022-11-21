@@ -73,7 +73,7 @@ const updateSpotsController = async (req,res,next) => {
     try{
         let clientUpdated = await updateSpotsService(req.params.id, req.body.spots)
         return res.status(200).json({
-            msg: `Cliente alterado com sucesso ${clientUpdated.name}`
+            msg: `Pontos alterados com sucesso `
         })
     }catch(err){
         next(err)
