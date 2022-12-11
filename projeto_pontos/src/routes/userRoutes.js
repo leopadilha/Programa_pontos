@@ -5,10 +5,10 @@ const { auth }  = require('../middlewares/auth')
 const { role  } = require('../middlewares/verifyRole')
 
 router.get('/users', userController.getAllController)
-router.post('/user', auth, role, userValidateNameAndDocument, userController.createUserController)
+router.post('/user', userValidateNameAndDocument, userController.createUserController)
 router.get('/user/:id', auth, role, userController.getByIdController)
-router.delete('/user/:document',auth, role, userController.deleteUserByDocumentController)
-router.patch('/user/:id', auth, role,  userValidateNameAndDocument, userController.updateUserController)
+router.delete('/user/:document', userController.deleteUserByDocumentController)
+router.patch('/user/:id',  userValidateNameAndDocument, userController.updateUserController)
 router.post('/user/login', userController.loginController)
 
 module.exports = router

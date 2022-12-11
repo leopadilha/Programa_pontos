@@ -2,6 +2,7 @@ const express = require('express')
 const routerClient = require('./src/routes/clientRoutes')
 const routerUser = require('./src/routes/userRoutes')
 const morgan = require('morgan')
+const cors = require('cors')
 //const bodyParser = require('body-parser')
 require('express-async-errors')
 const errorHandler = require('./src/middlewares/errorHandle')
@@ -17,6 +18,7 @@ class App{
 
     middlewares(){
         this.server.use(express.json())
+        this.server.use(cors())
         // this.server.use(bodyParser.urlencoded({ extended: false }))
         // this.server.use(bodyParser.json())
     }

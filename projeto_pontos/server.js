@@ -3,7 +3,7 @@ const dotenv = require('dotenv')
 const connection = require('./src/config/database')
 
 dotenv.config({ path: 'src/config/config.env'})
-const PORT  = process.env.PORT || 3000
+const PORT  = process.env.PORT || 4200
 
 connection()
 
